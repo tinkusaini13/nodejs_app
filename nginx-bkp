@@ -1,0 +1,26 @@
+events {}
+
+http {
+    server {
+        listen 80;
+
+        location /cart/ {
+            proxy_pass http://cart:3000/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+
+        location /shopping/ {
+            proxy_pass http://shopping:3001/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+
+        location /payment/ {
+            proxy_pass http://payment:3002/;
+            proxy_set_header Host $host;
+            proxy_set_header X-Real-IP $remote_addr;
+        }
+    }
+}
+
