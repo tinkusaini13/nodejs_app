@@ -1,10 +1,38 @@
 # nodejs_app
-Micro Services Node.js and React.js  application setup 
+Microservices project made up of 
+- frontend service 
+- backend services
+- products & shopping-cart
 
-How to run these microservices:
+# To build the projects
 
-docker-compose up -d 
+    docker build -t ms-frontend:1.0 frontend
+    docker build -t ms-products:1.0 products
+    docker build -t ms-shopping-cart:1.0 shopping-cart
 
-How to access these services:
+# To start them locally (repeat for each micro service)
 
-localhost
+    cd micro-service-name 
+    npm install
+    npm run
+
+# To start them as docker containers - separate commands
+
+    docker run -d -p 3000:3000 \
+    -e PRODUCTS_SERVICE=host.docker.internal \
+    -e SHOPPING_CART_SERVICE=host.docker.internal \
+    ms-frontend:1.0
+
+    docker run -d -p 3001:3001 ms-products:1.0
+    docker run -d -p 3002:3002 ms-shopping-cart:1.0
+
+# To start with docker-compose (repeat for each micro service)
+    
+    docker-compose -d up
+
+# Access the application on broswer:
+
+    localhost
+    
+
+
